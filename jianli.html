@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>潘彦吉 | 产品经理 — 作品集</title>
+  <!-- 产品类型：网页（PC+移动端自适应）；设计尺寸：流式布局；栅格：12列；间距：8px 基准 -->
+  <!-- 核心技术栈：HTML5 语义化 + TailwindCSS (CDN) + Google Fonts + Font Awesome 图标 -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkfM2J7Z9W3jLwQ7qfQ5Vw6oFZB8Y8nE1N1oCq8xB9zA6VQp1jKw3tZxw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root{
+      /* 60-30-10 色板（暗色 Apple 风） */
+      --c-bg:#0b0f14;        /* 60% 主背景 */
+      --c-surface:#111827;   /* 30% 次级面 */
+      --c-accent:#0A84FF;    /* 10% 强调（Apple 蓝） */
+      --c-text:#e5e7eb;      /* 高对比正文 */
+      --c-muted:#94a3b8;     /* 次要文字 */
+      --radius: 16px;        /* 8px 基准的 2x */
+    }
+    html {scroll-behavior:smooth}
+    body{font-family:'Inter','Noto Sans SC',-apple-system,BlinkMacSystemFont,'PingFang SC',"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+    /* 玻璃质感与层级阴影 */
+    .glass{background:linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02));backdrop-filter:saturate(140%) blur(8px);}
+    .elev-1{box-shadow:0 10px 30px -8px rgba(0,0,0,.45)}
+    .elev-2{box-shadow:0 18px 60px -12px rgba(0,0,0,.55)}
+
+    /* 滚动捕捉型轮播 */
+    .carousel{scroll-snap-type:x mandatory;overflow-x:auto;scroll-behavior:smooth;-webkit-overflow-scrolling:touch}
+    .carousel > *{scroll-snap-align:center}
+    .carousel::-webkit-scrollbar{height:8px}
+    .carousel::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:9999px}
+
+    /* 减少动画偏好 */
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none!important;transition:none!important}
+      html{scroll-behavior:auto}
+    }
+  </style>
+</head>
+<body class="web-page bg-[var(--c-bg)] text-[var(--c-text)] antialiased">
+  <a href="#content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:bg-white/10 focus:text-white focus:px-3 focus:py-1 focus:rounded">跳到主要内容</a>
+
+  <!-- 顶部导航 -->
+  <header class="sticky top-0 z-40 bg-[var(--c-bg)]/80 backdrop-blur border-b border-white/10">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 grid grid-cols-12 items-center gap-2">
+      <div class="col-span-8 sm:col-span-6 flex items-center gap-3">
+        <div class="size-8 rounded-lg bg-[var(--c-accent)]/15 flex items-center justify-center text-[var(--c-accent)] elev-1">潘</div>
+        <span class="text-sm sm:text-base font-semibold tracking-wide">潘彦吉｜产品经理</span>
+      </div>
+      <nav class="col-span-4 sm:col-span-6 flex justify-end items-center gap-4 text-sm">
+        <a href="#cases" class="hidden md:inline-block opacity-80 hover:opacity-100 transition">产品案例</a>
+        <a href="#explore" class="hidden md:inline-block opacity-80 hover:opacity-100 transition">探索与创作</a>
+        <a href="#contact" class="inline-flex items-center gap-2 bg-[var(--c-accent)] text-white px-3 py-2 rounded-lg hover:brightness-110 active:brightness-95 transition shadow">联系我<i class="fa-solid fa-arrow-right text-xs"></i></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <!-- HERO -->
+    <section class="py-10 sm:py-14 lg:py-20 grid grid-cols-12 gap-4 lg:gap-8 items-center">
+      <div class="col-span-12 lg:col-span-7 flex flex-col gap-4 lg:gap-6">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+          潘彦吉 <span class="opacity-60">|</span> 产品经理
+        </h1>
+        <p class="text-[15px] sm:text-base leading-relaxed text-[var(--c-muted)] max-w-2xl">
+          <!-- 待补充：50-100字个人优势。示例： -->
+          对数据极度敏感，擅长将复杂指标提炼为可决策的可视化；同时保持内容表达的温度与节奏，用清晰叙事把产品能力、用户价值与业务目标拧成一股绳。
+        </p>
+        <div class="flex flex-wrap items-center gap-3">
+          <a href="mailto:panyanji@example.com" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 transition border border-white/10"><i class="fa-regular fa-envelope"></i> panyanji@example.com</a>
+          <a href="https://www.xiaohongshu.com/" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 transition border border-white/10"><i class="fa-brands fa-xing"></i> 小红书 · 潘师傅</a>
+          <a href="https://www.douyin.com/" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 transition border border-white/10"><i class="fa-brands fa-tiktok"></i> 抖音 · 潘师傅</a>
+        </div>
+      </div>
+      <div class="col-span-12 lg:col-span-5 flex justify-start lg:justify-end">
+        <!-- 个人照片占位 -->
+        <div class="size-48 sm:size-56 lg:size-64 rounded-full overflow-hidden elev-2 ring-1 ring-white/10">
+          <img src="./assets/images/avatar.jpg" alt="潘彦吉个人照片" class="w-full h-full object-cover" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 分隔装饰线 -->
+    <div class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
+    <!-- 案例模块 -->
+    <section id="cases" class="py-12 lg:py-16 grid grid-cols-12 gap-6 lg:gap-8">
+      <header class="col-span-12 flex items-end justify-between">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold">专业产品案例</h2>
+          <p class="text-sm text-[var(--c-muted)] mt-2">核心背景、职责贡献、可视化与复盘</p>
+        </div>
+      </header>
+
+      <!-- 案例一：米股研究（小程序） -->
+      <article class="col-span-12 grid grid-cols-12 gap-4 lg:gap-6 p-4 sm:p-6 rounded-2xl glass elev-1 border border-white/10">
+        <div class="col-span-12 lg:col-span-8 flex flex-col gap-3">
+          <div class="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-white/70">
+            <span class="px-2 py-1 rounded bg-[var(--c-accent)]/20 text-[var(--c-accent)] font-semibold">小程序</span>
+            <span class="opacity-60">米股研究</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-semibold">项目背景</h3>
+          <p class="text-[15px] leading-relaxed text-[var(--c-muted)]">
+            解决国内美股投研服务不到位的问题，构建基本面 + 技术面研究支持，帮助用户把握趋势。
+          </p>
+
+          <!-- 贡献 Tab -->
+          <div class="mt-2">
+            <div class="flex flex-wrap gap-2" role="tablist" aria-label="米股研究 贡献标签">
+              <button class="tab-btn px-3 py-2 rounded-lg bg-white/10 hover:bg-white/15 border border-white/10 text-sm" data-tab="tab-ai">AI 分析师</button>
+              <button class="tab-btn px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-sm" data-tab="tab-charts">研究图表</button>
+              <button class="tab-btn px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-sm" data-tab="tab-tech">技术算法构建</button>
+              <button class="tab-btn px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-sm" data-tab="tab-content">内容设计</button>
+            </div>
+
+            <div class="mt-4 space-y-6">
+              <!-- AI 分析师 -->
+              <div id="tab-ai" class="tab-pane">
+                <p class="text-sm text-[var(--c-text)]/90">基于大模型自动生成技术分析报告；通过提示词工程与评测集校准降低幻觉，构建审校闭环以提升准确率与一致性。</p>
+                <div class="carousel mt-3 flex gap-3">
+                  <img class="w-4/5 md:w-[420px] h-72 object-cover rounded-xl border border-white/10" src="./assets/images/ai-report-1.jpg" alt="AI 分析报告示例 1" loading="lazy" />
+                  <img class="w-4/5 md:w-[420px] h-72 object-cover rounded-xl border border-white/10" src="./assets/images/ai-report-2.jpg" alt="AI 分析报告示例 2" loading="lazy" />
+                  <img class="w-4/5 md:w-[420px] h-72 object-cover rounded-xl border border-white/10" src="./assets/images/ai-report-3.jpg" alt="AI 分析报告示例 3" loading="lazy" />
+                </div>
+              </div>
+              <!-- 研究图表 -->
+              <div id="tab-charts" class="tab-pane hidden">
+                <p class="text-sm text-[var(--c-text)]/90">从 300+ 指标中组合几十张可视化图表，提炼趋势与结构性风险；以可读性优先的图表配色与网格，服务决策。</p>
+                <div class="carousel mt-3 flex gap-3">
+                  <img class="w-4/5 md:w-[420px] h-72 object-cover rounded-xl border border-white/10" src="./assets/images/fundamentals-1.jpg" alt="基本面图表示例 1" loading="lazy" />
+                  <img class="w-4/5 md:w-[420px] h-72 object-cover rounded-xl border border-white/10" src="./assets/images/fundamentals-2.jpg" alt="基本面图表示例 2" loading="lazy" />
+                  <img class="w-4/5 md:w-[420px] h-72 object-cover rounded-xl border border-white/10" src="./assets/images/fundamentals-3.jpg" alt="基本面图表示例 3" loading="lazy" />
+                </div>
+              </div>
+              <!-- 技术算法构建 -->
+              <div id="tab-tech" class="tab-pane hidden">
+                <p class="text-sm text-[var(--c-text)]/90">技术形态识别与核心指标算法设计，强调可解释性与交易临近度，保障信号质量与执行信心。</p>
+                <div class="carousel mt-3 flex gap-3">
+                  <img class="w-4/5 md:w-[420px] h-72 object-cover rounded-xl border border-white/10" src="./assets/images/tech-pattern-1.jpg" alt="技术形态识别示例 1" loading="lazy" />
+                  <img class="w-4/5 md:w-[420px] h-72 object-cover rounded-xl border border-white/10" src="./assets/images/tech-indicator-2.jpg" alt="核心指标算法示例 2" loading="lazy" />
+                </div>
+              </div>
+              <!-- 内容设计 -->
+              <div id="tab-content" class="tab-pane hidden">
+                <p class="text-sm text-[var(--c-text)]/90">围绕关键事件与行业主题产出视频脚本，统一叙事结构与视觉语言，提升理解效率与品牌可信度。</p>
+                <div class="carousel mt-3 flex gap-3">
+                  <img class="w-4/5 md:w-[420px] h-72 object-cover rounded-xl border border-white/10" src="./assets/images/video-script-1.jpg" alt="视频脚本示例 1" loading="lazy" />
+                  <img class="w-4/5 md:w-[420px] h-72 object-cover rounded-xl border border-white/10" src="./assets/images/video-script-2.jpg" alt="视频脚本示例 2" loading="lazy" />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 复盘 -->
+          <div class="mt-6 p-4 rounded-xl bg-white/5 border border-white/10">
+            <h4 class="font-semibold mb-2">项目复盘与思考</h4>
+            <p class="text-[15px] text-[var(--c-muted)]">对于投资类产品，离交易越近变现越容易。用户并不会为不确定性的学习结果付费，因此迭代方向（AI 分析、视频讲解）需更贴近交易并增强信任感。</p>
+          </div>
+        </div>
+
+        <!-- 右侧素材区：二维码 + 占位海报 -->
+        <aside class="col-span-12 lg:col-span-4 flex flex-col gap-4">
+          <div class="rounded-2xl bg-white/5 border border-white/10 p-4 flex flex-col items-center justify-center text-center">
+            <img src="./assets/images/qr-code.jpg" alt="米股研究小程序二维码" class="w-40 h-40 object-contain" loading="lazy" />
+            <p class="text-xs text-[var(--c-muted)] mt-2">扫描体验「米股研究」小程序</p>
+          </div>
+          <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+            <p class="text-xs text-[var(--c-muted)]">* 此处可放 2-3 张关键界面截图或长图预览；图片将采用 WebP 并懒加载，保证性能。</p>
+            <div class="mt-3 grid grid-cols-2 gap-2">
+              <img src="./assets/images/mobile-screen-1.jpg" alt="米股研究手机截图 1" class="w-full h-40 object-cover rounded-lg" loading="lazy" />
+              <img src="./assets/images/mobile-screen-2.jpg" alt="米股研究手机截图 2" class="w-full h-40 object-cover rounded-lg" loading="lazy" />
+            </div>
+          </div>
+        </aside>
+      </article>
+
+      <!-- 案例二：FOF Pro（PC 端） -->
+      <article class="col-span-12 grid grid-cols-12 gap-4 lg:gap-6 p-4 sm:p-6 rounded-2xl glass elev-1 border border-white/10">
+        <div class="col-span-12 flex items-center gap-2 text-xs uppercase tracking-wider text-white/70">
+          <span class="px-2 py-1 rounded bg-[var(--c-accent)]/20 text-[var(--c-accent)] font-semibold">PC 端</span>
+          <span class="opacity-60">FOF Pro</span>
+        </div>
+        <div class="col-span-12 lg:col-span-6 flex flex-col gap-3">
+          <h3 class="text-xl sm:text-2xl font-semibold">项目背景</h3>
+          <p class="text-[15px] leading-relaxed text-[var(--c-muted)]">沉淀大型买方基金分析平台的定制经验，打造标准化基金分析产品，以降低成本并扩大市场覆盖。</p>
+
+          <h4 class="font-semibold mt-2">职责与贡献</h4>
+          <ul class="list-disc pl-5 space-y-2 text-[15px]">
+            <li><b>TOWA 智能体平台：</b>基于 FastGPT 框架内置 Agent 搭建平台，上线「基金投顾」等系列 Agent，并对客户进行系统培训与落地辅导。</li>
+            <li><b>投研模板功能：</b>将数百种分析框架沉淀为可自动更新的数据图表模板，显著提升投研效率与一致性。</li>
+          </ul>
+        </div>
+        <div class="col-span-12 lg:col-span-6">
+          <div class="rounded-2xl overflow-hidden border border-white/10 elev-2">
+            <img src="./assets/images/fof-pro-screenshot.jpg" alt="FOF Pro 界面截图" class="w-full h-auto" loading="lazy" />
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- 个人探索与内容创作 -->
+    <section id="explore" class="py-12 lg:py-16">
+      <header class="mb-6">
+        <h2 class="text-2xl sm:text-3xl font-bold">个人探索与内容创作</h2>
+        <p class="text-sm text-[var(--c-muted)] mt-2">展示主动学习、技术热情与内容品味</p>
+      </header>
+
+      <!-- 提示词网站 -->
+      <div class="grid grid-cols-12 gap-4 lg:gap-6 mb-6">
+        <article class="col-span-12 p-4 sm:p-6 rounded-2xl bg-white/5 border border-white/10">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div>
+              <h3 class="text-lg font-semibold">作品：提示词网站</h3>
+              <p class="text-sm text-[var(--c-muted)]">学习 Vibe Coding，探索 AI 协同开发模式，同时满足工作与创作的实际需求。</p>
+            </div>
+            <a class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-[var(--c-accent)] text-white hover:brightness-110 transition" href="https://aqahpda71l3v.trickle.host" target="_blank" rel="noreferrer">
+              访问站点 <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <!-- AI 生成视频（嵌入式播放器：B站链接待补充） -->
+      <div class="grid grid-cols-12 gap-4 lg:gap-6 mb-6">
+        <article class="col-span-12 p-4 sm:p-6 rounded-2xl bg-white/5 border border-white/10">
+          <h3 class="text-lg font-semibold">作品：AI 生成视频</h3>
+          <p class="text-sm text-[var(--c-muted)] mb-4">3 个短视频，探索 AIGC 在视频领域的能力边界（下方为占位播放器，替换为 B 站分享链接即可）。</p>
+          <div class="grid md:grid-cols-3 gap-4">
+            <!-- 占位 iframe；替换 src 为 B 站链接 -->
+            <div class="aspect-video rounded-xl overflow-hidden bg-black/40 border border-white/10">
+              <iframe title="AI 视频 1" class="w-full h-full" src="about:blank" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="aspect-video rounded-xl overflow-hidden bg-black/40 border border-white/10">
+              <iframe title="AI 视频 2" class="w-full h-full" src="about:blank" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="aspect-video rounded-xl overflow-hidden bg-black/40 border border-white/10">
+              <iframe title="AI 视频 3" class="w-full h-full" src="about:blank" allowfullscreen loading="lazy"></iframe>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- 自研 Agent -->
+      <div class="grid grid-cols-12 gap-4 lg:gap-6 mb-6">
+        <article class="col-span-12 p-4 sm:p-6 rounded-2xl bg-white/5 border border-white/10">
+          <h3 class="text-lg font-semibold">作品：自研 Agent</h3>
+          <div class="mt-3 grid md:grid-cols-2 gap-4">
+            <div class="p-4 rounded-xl bg-black/30 border border-white/10">
+              <h4 class="font-semibold">文生图 Agent</h4>
+              <p class="text-sm text-[var(--c-muted)]">将灵感/文字快速生成海报与图片；支持风格模板与构图约束。</p>
+              <div class="mt-3 flex gap-2">
+                <a class="px-3 py-2 rounded-lg bg-[var(--c-accent)]/20 text-[var(--c-accent)] border border-[var(--c-accent)]/30" href="#" target="_blank" rel="noreferrer">体验链接（待补充）</a>
+                <a class="px-3 py-2 rounded-lg bg-white/5 border border-white/10" href="#" target="_blank" rel="noreferrer">关键对话截图</a>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl bg-black/30 border border-white/10">
+              <h4 class="font-semibold">备课助手 Agent</h4>
+              <p class="text-sm text-[var(--c-muted)]">面向教师的备课流程助理：大纲生成、习题抽取、节奏建议与讲义草稿。</p>
+              <div class="mt-3 flex gap-2">
+                <a class="px-3 py-2 rounded-lg bg-[var(--c-accent)]/20 text-[var(--c-accent)] border border-[var(--c-accent)]/30" href="#" target="_blank" rel="noreferrer">体验链接（待补充）</a>
+                <a class="px-3 py-2 rounded-lg bg-white/5 border border-white/10" href="#" target="_blank" rel="noreferrer">关键对话截图</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- 公众号文章 -->
+      <div class="grid grid-cols-12 gap-4 lg:gap-6">
+        <article class="col-span-12 p-4 sm:p-6 rounded-2xl bg-white/5 border border-white/10">
+          <h3 class="text-lg font-semibold">作品：公众号文章（精选 2 篇）</h3>
+          <div class="mt-4 grid md:grid-cols-2 gap-4">
+            <a class="group rounded-2xl overflow-hidden border border-white/10 bg-black/30 hover:bg-black/20 transition block" href="https://mp.weixin.qq.com/s/GAED5VWm2qj5_U5315tzkg" target="_blank" rel="noreferrer">
+              <div class="h-40 bg-gradient-to-br from-white/10 to-white/5"></div>
+              <div class="p-4">
+                <h4 class="font-semibold group-hover:text-[var(--c-accent)] transition">文章一：深度思考</h4>
+                <p class="text-sm text-[var(--c-muted)]">点击查看公众号原文</p>
+              </div>
+            </a>
+            <a class="group rounded-2xl overflow-hidden border border-white/10 bg-black/30 hover:bg-black/20 transition block" href="https://mp.weixin.qq.com/s/w6MQoEYm-KUNpIdWCkYsSw" target="_blank" rel="noreferrer">
+              <div class="h-40 bg-gradient-to-br from-white/10 to-white/5"></div>
+              <div class="p-4">
+                <h4 class="font-semibold group-hover:text-[var(--c-accent)] transition">文章二：方法论</h4>
+                <p class="text-sm text-[var(--c-muted)]">点击查看公众号原文</p>
+              </div>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 联系 / 页脚前锚点 -->
+    <section id="contact" class="py-12 lg:py-16">
+      <div class="p-6 rounded-2xl bg-white/5 border border-white/10">
+        <h2 class="text-xl sm:text-2xl font-semibold">联系我</h2>
+        <p class="text-sm text-[var(--c-muted)] mt-2">如需获取 PDF 简历或进一步沟通，请通过邮箱或社交账号联系。</p>
+        <div class="mt-4 flex flex-wrap gap-3">
+          <a href="mailto:panyanji@example.com" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--c-accent)] text-white hover:brightness-110 transition"><i class="fa-regular fa-envelope"></i> panyanji@example.com</a>
+          <a href="https://www.xiaohongshu.com/" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition"><i class="fa-brands fa-xing"></i> 小红书 · 潘师傅</a>
+          <a href="https://www.douyin.com/" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition"><i class="fa-brands fa-tiktok"></i> 抖音 · 潘师傅</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/10">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 text-sm flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="opacity-70">© 2025 Pan Yanji</p>
+      <div class="flex items-center gap-3">
+        <a href="https://www.xiaohongshu.com/" target="_blank" rel="noreferrer" class="size-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition" aria-label="小红书"><i class="fa-brands fa-xing"></i></a>
+        <a href="https://www.douyin.com/" target="_blank" rel="noreferrer" class="size-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 transition" aria-label="抖音"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 交互：Tab 切换（原生最小 JS），符合 200–300ms 过渡规范 -->
+  <script>
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panes = document.querySelectorAll('.tab-pane');
+    tabs.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        tabs.forEach(b=>b.classList.remove('bg-white/10'));
+        tabs.forEach(b=>b.classList.add('bg-white/5'));
+        panes.forEach(p=>p.classList.add('hidden'));
+        const id = btn.dataset.tab;
+        document.getElementById(id)?.classList.remove('hidden');
+        btn.classList.add('bg-white/10');
+      });
+    });
+  </script>
+</body>
+</html>
