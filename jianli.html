@@ -18,6 +18,10 @@
       --c-text:#e5e7eb;      /* 高对比正文 */
       --c-muted:#94a3b8;     /* 次要文字 */
       --radius: 16px;        /* 8px 基准的 2x */
+      
+      /* 垂直间距系统 */
+      --spacing-b: 12px;     /* B类间距：内容间距 */
+      --spacing-a: 24px;     /* A类间距：模块间距 (2B) */
     }
     html {scroll-behavior:smooth}
     body{font-family:'Inter','Noto Sans SC',-apple-system,BlinkMacSystemFont,'PingFang SC',"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
@@ -37,13 +41,290 @@
       *{animation:none!important;transition:none!important}
       html{scroll-behavior:auto}
     }
+    
+    /* 灯箱样式 */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .lightbox.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .lightbox-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      transform: scale(0.8);
+      transition: transform 0.3s ease;
+    }
+    
+    .lightbox.active .lightbox-content {
+      transform: scale(1);
+    }
+    
+    .lightbox img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.5);
+    }
+    
+    .lightbox-close {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: white;
+      font-size: 24px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+      transition: background 0.2s ease;
+    }
+    
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    /* 手机模型样式 */
+    .phone-mockup-container-precise {
+      position: relative;
+      width: 100%;
+      padding: 1rem;
+      display: flex;
+      align-items: center; /* 由上对齐改为垂直居中 */
+      justify-content: center;
+      margin-top: 0; /* 由外边距控制对齐改为由网格居中 */
+    }
+    
+    .phone-mockup {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    .phone-frame {
+      position: relative;
+      width: 260px;
+      height: 520px;
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      border-radius: 35px;
+      padding: 22px;
+      box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        0 20px 50px -12px rgba(0, 0, 0, 0.4),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(5px);
+    }
+    
+    .phone-frame::before {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 2px;
+    }
+    
+    .phone-frame::after {
+      content: '';
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 2px;
+    }
+    
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .screen-placeholder {
+      width: 100%;
+      height: 100%;
+      background: #333333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    .screen-placeholder::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, 
+        rgba(255, 255, 255, 0.05) 0%, 
+        transparent 50%, 
+        rgba(255, 255, 255, 0.02) 100%);
+    }
+    
+    .placeholder-content {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* 职责贡献按钮状态 */
+    .tab-btn {
+      transition: all 0.3s ease;
+    }
+    
+    .tab-btn.active {
+      background: rgba(255, 255, 255, 0.15) !important;
+      color: white;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    /* 内容区域高度锁定 */
+    .tab-content-area {
+      min-height: 200px;
+    }
+    
+    .tab-description {
+      min-height: 48px; /* 容纳两行文字 */
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    .tab-images {
+      min-height: 160px;
+    }
+    
+    /* 二维码浮窗 */
+    .qr-float {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.4);
+      transition: all 0.3s ease;
+      z-index: 10;
+    }
+    
+    .qr-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.5);
+    }
+    
+    .qr-float img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    
+    /* 间距系统应用类 */
+    .spacing-a {
+      margin-top: var(--spacing-a);
+    }
+    
+    .spacing-b {
+      margin-top: var(--spacing-b);
+    }
+    
+    /* 米股研究专用布局：移动端上下；桌面端左文右机（绝对定位，鲁棒对齐） */
+    .miguyan-grid { display: block; }
+    .miguyan-left { width: 100%; }
+    .miguyan-right { width: 100%; margin-top: 2rem; display: flex; justify-content: center; }
+    
+    @media (min-width: 1024px) {
+      .miguyan-grid { position: relative; }
+      /* 预留右侧手机占位：260px 宽 + 2rem 间距 */
+      .miguyan-left { margin-right: calc(260px + 2rem); }
+      .miguyan-right {
+        position: absolute; right: -1.5rem; top: 50%; transform: translateY(-50%);
+        width: 260px; margin-top: 0; display: flex; justify-content: center; align-items: center;
+      }
+      .phone-mockup-container-precise { width: 100%; padding: 0; }
+    }
+    
+    /* 响应式调整 */
+    @media (max-width: 1024px) {
+      .phone-mockup-container-precise {
+        padding: 0.75rem;
+      }
+      .phone-frame {
+        width: 220px;
+        height: 440px;
+        padding: 18px;
+        border-radius: 32px;
+      }
+      .phone-screen {
+        border-radius: 22px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .phone-mockup-container-precise {
+        padding: 1rem;
+        margin-top: var(--spacing-b); /* 移动端使用更小的间距 */
+      }
+      .phone-frame {
+        width: 180px;
+        height: 360px;
+        padding: 16px;
+        border-radius: 30px;
+      }
+      .phone-screen {
+        border-radius: 20px;
+      }
+    }
   </style>
 </head>
 <body class="web-page bg-[var(--c-bg)] text-[var(--c-text)] antialiased">
   <a href="#content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:bg-white/10 focus:text-white focus:px-3 focus:py-1 focus:rounded">跳到主要内容</a>
 
-  <!-- 顶部导航 -->
-  <header class="sticky top-0 z-40 bg-[var(--c-bg)]/80 backdrop-blur border-b border-white/10">
+  <!-- 顶部导航（初始隐藏，滚动后显示） -->
+  <header id="navbar" class="fixed top-0 z-40 w-full bg-[var(--c-bg)]/80 backdrop-blur border-b border-white/10 opacity-0 -translate-y-full transition-all duration-500 ease-out">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 grid grid-cols-12 items-center gap-2">
       <div class="col-span-8 sm:col-span-6 flex items-center gap-3">
         <div class="size-8 rounded-lg bg-[var(--c-accent)]/15 flex items-center justify-center text-[var(--c-accent)] elev-1">潘</div>
@@ -58,26 +339,40 @@
   </header>
 
   <main id="content" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <!-- HERO -->
-    <section class="py-10 sm:py-14 lg:py-20 grid grid-cols-12 gap-4 lg:gap-8 items-center">
-      <div class="col-span-12 lg:col-span-7 flex flex-col gap-4 lg:gap-6">
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
-          潘彦吉 <span class="opacity-60">|</span> 产品经理
-        </h1>
-        <p class="text-[15px] sm:text-base leading-relaxed text-[var(--c-muted)] max-w-2xl">
-          <!-- 待补充：50-100字个人优势。示例： -->
-          对数据极度敏感，擅长将复杂指标提炼为可决策的可视化；同时保持内容表达的温度与节奏，用清晰叙事把产品能力、用户价值与业务目标拧成一股绳。
-        </p>
-        <div class="flex flex-wrap items-center gap-3">
-          <a href="mailto:panyanji@example.com" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 transition border border-white/10"><i class="fa-regular fa-envelope"></i> panyanji@example.com</a>
-          <a href="https://www.xiaohongshu.com/" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 transition border border-white/10"><i class="fa-brands fa-xing"></i> 小红书 · 潘师傅</a>
-          <a href="https://www.douyin.com/" target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 transition border border-white/10"><i class="fa-brands fa-tiktok"></i> 抖音 · 潘师傅</a>
+    <!-- HERO（新布局：左头像，右文字） -->
+    <section id="hero" class="py-8 sm:py-10 lg:py-12 grid grid-cols-12 gap-6 lg:gap-8 items-center">
+      <!-- 左栏：头像 -->
+      <div class="col-span-12 md:col-span-4 lg:col-span-3 flex justify-center md:justify-start">
+        <div class="size-40 sm:size-48 lg:size-56 rounded-full overflow-hidden elev-2 ring-1 ring-white/10">
+          <img src="./assets/images/avatar.jpg" alt="潘彦吉个人照片" class="w-full h-full object-cover" loading="lazy" />
         </div>
       </div>
-      <div class="col-span-12 lg:col-span-5 flex justify-start lg:justify-end">
-        <!-- 个人照片占位 -->
-        <div class="size-48 sm:size-56 lg:size-64 rounded-full overflow-hidden elev-2 ring-1 ring-white/10">
-          <img src="./assets/images/avatar.jpg" alt="潘彦吉个人照片" class="w-full h-full object-cover" loading="lazy" />
+      
+      <!-- 右栏：文字信息 -->
+      <div class="col-span-12 md:col-span-8 lg:col-span-9 flex flex-col gap-4 lg:gap-5">
+        <!-- 第一行：姓名与职位 -->
+        <h1 id="main-title" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+          潘彦吉 <span class="opacity-60">|</span> 产品经理
+        </h1>
+        
+        <!-- 第二行：教育背景 -->
+        <div class="text-base sm:text-lg text-[var(--c-muted)] font-medium">
+          2017-对外经济贸易大学-金融硕士
+        </div>
+        
+        <!-- 第三行：个人简介 -->
+        <p class="text-[15px] sm:text-base leading-relaxed text-[var(--c-text)] max-w-3xl">
+          理工科与金融的复合背景让我擅长数据的处理与分析，从小对动漫、电影、电子游戏的喜爱也让我能感知内容表达的温度和节奏。
+        </p>
+        
+        <!-- 第四行：联系信息 -->
+        <div class="flex flex-wrap items-center gap-3">
+          <a href="mailto:panyanji@example.com" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 transition border border-white/10">
+            <i class="fa-regular fa-envelope"></i> panyanji@example.com
+          </a>
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10">
+            <i class="fa-brands fa-weibo"></i> 小红书|抖音：潘师傅
+          </div>
         </div>
       </div>
     </section>
@@ -95,85 +390,137 @@
       </header>
 
       <!-- 案例一：米股研究（小程序） -->
-      <article class="col-span-12 grid grid-cols-12 gap-4 lg:gap-6 p-4 sm:p-6 rounded-2xl glass elev-1 border border-white/10">
-        <div class="col-span-12 lg:col-span-8 flex flex-col gap-3">
-          <div class="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-white/70">
-            <span class="px-2 py-1 rounded bg-[var(--c-accent)]/20 text-[var(--c-accent)] font-semibold">小程序</span>
-            <span class="opacity-60">米股研究</span>
+      <article class="col-span-12 p-4 sm:p-6 rounded-2xl glass elev-1 border border-white/10">
+        <div class="miguyan-grid" style="display:flex;flex-wrap:wrap;gap:2rem;align-items:center;">
+        <div class="miguyan-left self-stretch" id="left-content-area" style="flex:2 1 480px;min-width:320px;">
+          <!-- 主标题：米股研究 | 小程序 -->
+          <h3 class="text-xl sm:text-2xl font-semibold text-white">
+            <span class="inline-flex items-center gap-3">
+              <span>米股研究</span>
+              <span class="px-2 py-1 rounded bg-[var(--c-accent)]/20 text-[var(--c-accent)] text-sm font-semibold">小程序</span>
+            </span>
+          </h3>
+          
+          <!-- 项目背景模块 - 对齐基准点 -->
+          <div class="spacing-a" id="project-background-section">
+            <h4 class="font-semibold text-white">项目背景</h4>
+            <p class="text-[15px] leading-relaxed text-[var(--c-muted)] spacing-b">
+              国内对于美股投资的研究服务并不是很到位，我们希望用一个产品来构建基本面+技术面的研究支持，帮助用户能够赚到趋势的钱。
+            </p>
           </div>
-          <h3 class="text-xl sm:text-2xl font-semibold">项目背景</h3>
-          <p class="text-[15px] leading-relaxed text-[var(--c-muted)]">
-            解决国内美股投研服务不到位的问题，构建基本面 + 技术面研究支持，帮助用户把握趋势。
-          </p>
 
-          <!-- 贡献 Tab -->
-          <div class="mt-2">
+          <!-- 职责贡献模块 -->
+          <div class="spacing-a">
+            <h4 class="font-semibold text-white">职责贡献</h4>
+            
+            <!-- 贡献 Tab -->
+            <div class="spacing-b">
             <div class="flex flex-wrap gap-2" role="tablist" aria-label="米股研究 贡献标签">
-              <button class="tab-btn px-3 py-2 rounded-lg bg-white/10 hover:bg-white/15 border border-white/10 text-sm" data-tab="tab-ai">AI 分析师</button>
+              <button class="tab-btn px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-sm active" data-tab="tab-ai">AI 分析师</button>
               <button class="tab-btn px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-sm" data-tab="tab-charts">研究图表</button>
               <button class="tab-btn px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-sm" data-tab="tab-tech">技术算法构建</button>
               <button class="tab-btn px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-sm" data-tab="tab-content">内容设计</button>
             </div>
 
-            <div class="mt-4 space-y-6">
+            <div class="tab-content-area spacing-b">
               <!-- AI 分析师 -->
               <div id="tab-ai" class="tab-pane">
-                <p class="text-sm text-[var(--c-text)]/90">基于大模型自动生成技术分析报告；通过提示词工程与评测集校准降低幻觉，构建审校闭环以提升准确率与一致性。</p>
-                <div class="carousel mt-3 flex gap-3">
-                  <img class="w-4/5 md:w-[420px] h-72 object-cover rounded-xl border border-white/10" src="./assets/images/ai-report-1.jpg" alt="AI 分析报告示例 1" loading="lazy" />
-                  <img class="w-4/5 md:w-[420px] h-72 object-cover rounded-xl border border-white/10" src="./assets/images/ai-report-2.jpg" alt="AI 分析报告示例 2" loading="lazy" />
-                  <img class="w-4/5 md:w-[420px] h-72 object-cover rounded-xl border border-white/10" src="./assets/images/ai-report-3.jpg" alt="AI 分析报告示例 3" loading="lazy" />
+                <div class="tab-description">
+                  <p class="text-sm text-[var(--c-text)]/90">利用大模型生成K线图技术分析报告，通过提示词工程和参数预填充的技巧，有效降低数据对比时的幻觉，以及提高最终输出的趋势判断合理性。</p>
+                </div>
+                <div class="tab-images grid grid-cols-1 md:grid-cols-3 gap-3 spacing-b">
+                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/ai-report-1.jpg', 'AI 分析报告示例 1')">
+                    <img class="w-full h-full object-cover" src="./assets/images/ai-report-1.jpg" alt="AI 分析报告示例 1" loading="lazy" />
+                  </div>
+                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/ai-report-2.jpg', 'AI 分析报告示例 2')">
+                    <img class="w-full h-full object-cover" src="./assets/images/ai-report-2.jpg" alt="AI 分析报告示例 2" loading="lazy" />
+                  </div>
+                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/ai-report-3.jpg', 'AI 分析报告示例 3')">
+                    <img class="w-full h-full object-cover" src="./assets/images/ai-report-3.jpg" alt="AI 分析报告示例 3" loading="lazy" />
+                  </div>
                 </div>
               </div>
               <!-- 研究图表 -->
               <div id="tab-charts" class="tab-pane hidden">
-                <p class="text-sm text-[var(--c-text)]/90">从 300+ 指标中组合几十张可视化图表，提炼趋势与结构性风险；以可读性优先的图表配色与网格，服务决策。</p>
-                <div class="carousel mt-3 flex gap-3">
-                  <img class="w-4/5 md:w-[420px] h-72 object-cover rounded-xl border border-white/10" src="./assets/images/fundamentals-1.jpg" alt="基本面图表示例 1" loading="lazy" />
-                  <img class="w-4/5 md:w-[420px] h-72 object-cover rounded-xl border border-white/10" src="./assets/images/fundamentals-2.jpg" alt="基本面图表示例 2" loading="lazy" />
-                  <img class="w-4/5 md:w-[420px] h-72 object-cover rounded-xl border border-white/10" src="./assets/images/fundamentals-3.jpg" alt="基本面图表示例 3" loading="lazy" />
+                <div class="tab-description">
+                  <p class="text-sm text-[var(--c-text)]/90">从300+的宏观经济数据和技术指标中，组合出几十张分析图表，力争用数据帮用户理解基本面，看清价格趋势。</p>
+                </div>
+                <div class="tab-images grid grid-cols-1 md:grid-cols-3 gap-3 spacing-b">
+                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/fundamentals-1.jpg', '基本面图表示例 1')">
+                    <img class="w-full h-full object-cover" src="./assets/images/fundamentals-1.jpg" alt="基本面图表示例 1" loading="lazy" />
+                  </div>
+                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/fundamentals-2.jpg', '基本面图表示例 2')">
+                    <img class="w-full h-full object-cover" src="./assets/images/fundamentals-2.jpg" alt="基本面图表示例 2" loading="lazy" />
+                  </div>
+                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/fundamentals-3.jpg', '基本面图表示例 3')">
+                    <img class="w-full h-full object-cover" src="./assets/images/fundamentals-3.jpg" alt="基本面图表示例 3" loading="lazy" />
+                  </div>
                 </div>
               </div>
               <!-- 技术算法构建 -->
               <div id="tab-tech" class="tab-pane hidden">
-                <p class="text-sm text-[var(--c-text)]/90">技术形态识别与核心指标算法设计，强调可解释性与交易临近度，保障信号质量与执行信心。</p>
-                <div class="carousel mt-3 flex gap-3">
-                  <img class="w-4/5 md:w-[420px] h-72 object-cover rounded-xl border border-white/10" src="./assets/images/tech-pattern-1.jpg" alt="技术形态识别示例 1" loading="lazy" />
-                  <img class="w-4/5 md:w-[420px] h-72 object-cover rounded-xl border border-white/10" src="./assets/images/tech-indicator-2.jpg" alt="核心指标算法示例 2" loading="lazy" />
+                <div class="tab-description">
+                  <p class="text-sm text-[var(--c-text)]/90">技术形态识别（上升通道/头肩顶/楔形…），技术指标（新波那契回撤/成交量分布/技术打分…），分析功能（板块轮动）的核心算法构建。</p>
+                </div>
+                <div class="tab-images grid grid-cols-1 md:grid-cols-3 gap-3 spacing-b">
+                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/tech-pattern-1.jpg', '技术形态识别示例 1')">
+                    <img class="w-full h-full object-cover" src="./assets/images/tech-pattern-1.jpg" alt="技术形态识别示例 1" loading="lazy" />
+                  </div>
+                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/tech-indicator-2.jpg', '核心指标算法示例 2')">
+                    <img class="w-full h-full object-cover" src="./assets/images/tech-indicator-2.jpg" alt="核心指标算法示例 2" loading="lazy" />
+                  </div>
+                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/tech-indicator-3.jpg', '核心指标算法示例 3')">
+                    <img class="w-full h-full object-cover" src="./assets/images/tech-indicator-3.jpg" alt="核心指标算法示例 3" loading="lazy" />
+                  </div>
                 </div>
               </div>
               <!-- 内容设计 -->
               <div id="tab-content" class="tab-pane hidden">
-                <p class="text-sm text-[var(--c-text)]/90">围绕关键事件与行业主题产出视频脚本，统一叙事结构与视觉语言，提升理解效率与品牌可信度。</p>
-                <div class="carousel mt-3 flex gap-3">
-                  <img class="w-4/5 md:w-[420px] h-72 object-cover rounded-xl border border-white/10" src="./assets/images/video-script-1.jpg" alt="视频脚本示例 1" loading="lazy" />
-                  <img class="w-4/5 md:w-[420px] h-72 object-cover rounded-xl border border-white/10" src="./assets/images/video-script-2.jpg" alt="视频脚本示例 2" loading="lazy" />
+                <div class="tab-description">
+                  <p class="text-sm text-[var(--c-text)]/90">美股视频内容的脚本设计，每篇内容 Futu 浏览量在50w上下。</p>
+                </div>
+                <div class="tab-images grid grid-cols-1 md:grid-cols-3 gap-3 spacing-b">
+                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/video-script-1.jpg', '视频脚本示例 1')">
+                    <img class="w-full h-full object-cover" src="./assets/images/video-script-1.jpg" alt="视频脚本示例 1" loading="lazy" />
+                  </div>
+                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/video-script-2.jpg', '视频脚本示例 2')">
+                    <img class="w-full h-full object-cover" src="./assets/images/video-script-2.jpg" alt="视频脚本示例 2" loading="lazy" />
+                  </div>
+                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/video-script-3.jpg', '视频脚本示例 3')">
+                    <img class="w-full h-full object-cover" src="./assets/images/video-script-3.jpg" alt="视频脚本示例 3" loading="lazy" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-
-          <!-- 复盘 -->
-          <div class="mt-6 p-4 rounded-xl bg-white/5 border border-white/10">
-            <h4 class="font-semibold mb-2">项目复盘与思考</h4>
-            <p class="text-[15px] text-[var(--c-muted)]">对于投资类产品，离交易越近变现越容易。用户并不会为不确定性的学习结果付费，因此迭代方向（AI 分析、视频讲解）需更贴近交易并增强信任感。</p>
+          
+          <!-- 项目复盘与思考模块 - 对齐基准点 -->
+          <div class="p-4 rounded-xl bg-white/5 border border-white/10 spacing-a" id="project-reflection-section">
+            <h4 class="font-semibold text-white">项目复盘与思考</h4>
+            <p class="text-[15px] text-[var(--c-muted)] spacing-b">对于投资类产品，离交易越近变现越容易。用户并不会为不确定性的学习结果付费，因此迭代方向（AI 分析、视频讲解）需更贴近交易并增强信任感。</p>
           </div>
         </div>
 
-        <!-- 右侧素材区：二维码 + 占位海报 -->
-        <aside class="col-span-12 lg:col-span-4 flex flex-col gap-4">
-          <div class="rounded-2xl bg-white/5 border border-white/10 p-4 flex flex-col items-center justify-center text-center">
-            <img src="./assets/images/qr-code.jpg" alt="米股研究小程序二维码" class="w-40 h-40 object-contain" loading="lazy" />
-            <p class="text-xs text-[var(--c-muted)] mt-2">扫描体验「米股研究」小程序</p>
-          </div>
-          <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
-            <p class="text-xs text-[var(--c-muted)]">* 此处可放 2-3 张关键界面截图或长图预览；图片将采用 WebP 并懒加载，保证性能。</p>
-            <div class="mt-3 grid grid-cols-2 gap-2">
-              <img src="./assets/images/mobile-screen-1.jpg" alt="米股研究手机截图 1" class="w-full h-40 object-cover rounded-lg" loading="lazy" />
-              <img src="./assets/images/mobile-screen-2.jpg" alt="米股研究手机截图 2" class="w-full h-40 object-cover rounded-lg" loading="lazy" />
+        <!-- 右侧：手机模型展示区，精准对齐左侧项目背景到项目复盘区域 -->
+        <aside class="miguyan-right" style="flex:1 1 320px;min-width:300px;display:flex;justify-content:center;align-items:center;">
+          <div class="phone-mockup-container-precise">
+            <div class="phone-mockup">
+              <!-- 手机外框轮廓 -->
+              <div class="phone-frame">
+                <!-- 手机屏幕区域 -->
+                <div class="phone-screen">
+                  <img class="w-full h-full object-cover" src="./assets/images/mobile-screen-1.jpg" alt="米股研究 手机界面截图" loading="lazy" />
+                </div>
+                
+                <!-- 二维码浮窗 -->
+                <div class="qr-float" onclick="openQRLightbox()" title="扫描体验米股研究小程序">
+                  <img src="./assets/images/qr-code.jpg" alt="米股研究小程序二维码" loading="lazy" />
+                </div>
+              </div>
             </div>
           </div>
         </aside>
+        </div>
       </article>
 
       <!-- 案例二：FOF Pro（PC 端） -->
@@ -315,20 +662,118 @@
     </div>
   </footer>
 
-  <!-- 交互：Tab 切换（原生最小 JS），符合 200–300ms 过渡规范 -->
+  <!-- 灯箱结构 -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+    <div class="lightbox-content">
+      <button class="lightbox-close" onclick="closeLightbox()" aria-label="关闭">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <img id="lightbox-img" src="" alt="" />
+    </div>
+  </div>
+
+  <!-- 交互：Tab 切换 + 导航栏滚动动效 + 灯箱功能 -->
   <script>
+    // Tab 切换功能（优化版）
     const tabs = document.querySelectorAll('.tab-btn');
     const panes = document.querySelectorAll('.tab-pane');
     tabs.forEach(btn=>{
       btn.addEventListener('click',()=>{
-        tabs.forEach(b=>b.classList.remove('bg-white/10'));
-        tabs.forEach(b=>b.classList.add('bg-white/5'));
-        panes.forEach(p=>p.classList.add('hidden'));
+        // 移除所有按钮的激活状态
+        tabs.forEach(b => {
+          b.classList.remove('active');
+          b.classList.remove('bg-white/10');
+          b.classList.add('bg-white/5');
+        });
+        
+        // 隐藏所有内容面板
+        panes.forEach(p => p.classList.add('hidden'));
+        
+        // 激活当前按钮
+        btn.classList.add('active');
+        btn.classList.remove('bg-white/5');
+        
+        // 显示对应内容
         const id = btn.dataset.tab;
         document.getElementById(id)?.classList.remove('hidden');
-        btn.classList.add('bg-white/10');
       });
     });
+    
+    // 导航栏滚动显示/隐藏动效
+    const navbar = document.getElementById('navbar');
+    const mainTitle = document.getElementById('main-title');
+    let titleOutOfView = false;
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.target === mainTitle) {
+          titleOutOfView = !entry.isIntersecting;
+          
+          if (titleOutOfView && !navbar.classList.contains('navbar-visible')) {
+            // 标题滚出屏幕，显示导航栏
+            navbar.classList.add('navbar-visible');
+            navbar.style.opacity = '1';
+            navbar.style.transform = 'translateY(0)';
+          } else if (!titleOutOfView && navbar.classList.contains('navbar-visible')) {
+            // 标题返回屏幕，隐藏导航栏
+            navbar.classList.remove('navbar-visible');
+            navbar.style.opacity = '0';
+            navbar.style.transform = 'translateY(-100%)';
+          }
+        }
+      });
+    }, {
+      threshold: 0,
+      rootMargin: '-50px 0px 0px 0px'
+    });
+    
+    observer.observe(mainTitle);
+    
+    // 灯箱功能
+    function openLightbox(imageSrc, imageAlt) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      
+      lightboxImg.src = imageSrc;
+      lightboxImg.alt = imageAlt;
+      lightbox.classList.add('active');
+      
+      // 阻止背景滚动
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeLightbox(event) {
+      // 如果点击的是图片本身，不关闭
+      if (event && event.target.tagName === 'IMG') {
+        return;
+      }
+      
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.remove('active');
+      
+      // 恢复背景滚动
+      document.body.style.overflow = '';
+    }
+    
+    // ESC键关闭灯箱
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+    
+    // 二维码专用灯箱功能
+    function openQRLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      
+      lightboxImg.src = './assets/images/qr-code.jpg';
+      lightboxImg.alt = '米股研究小程序二维码 - 扫描体验';
+      lightbox.classList.add('active');
+      
+      // 阻止背景滚动
+      document.body.style.overflow = 'hidden';
+    }
   </script>
 </body>
 </html>
