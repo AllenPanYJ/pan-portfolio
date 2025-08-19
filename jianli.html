@@ -232,6 +232,74 @@
       min-height: 160px;
     }
     
+    /* 图片入口容器（优化缩略图为“可点击入口”） */
+    .image-container {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0.75rem; /* 12px，等同 rounded-xl */
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .image-container .overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s ease;
+    }
+    .image-container:hover .overlay {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    .label-container {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0.75rem; /* 12px */
+      background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
+    }
+    .label-container span {
+      display: block;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--c-muted); /* 与“项目背景”正文一致 */
+      text-align: left;
+    }
+    
+    /* FOF Pro 专用：宽高比与左上角胶囊标签 */
+    .ratio-1910-923 { aspect-ratio: 1910 / 923; }
+    .image-label {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      padding: 0.25rem 0.75rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 15px; /* 与正文一致 */
+      line-height: 1.6;
+      color: var(--c-muted);
+    }
+    
+    /* FOF tabs */
+    .fof-tab-pane { display: none; }
+    .fof-tab-pane.active { display: block; }
+    .fof-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem; /* 等同 gap-3 */
+      margin-top: var(--spacing-b); /* 确保描述与图片之间 B=12px */
+    }
+    
     /* 二维码浮窗 */
     .qr-float {
       position: absolute;
@@ -410,7 +478,7 @@
           </div>
 
           <!-- 职责贡献模块 -->
-          <div class="spacing-a">
+          <div class="spacing-a tab-component">
             <h4 class="font-semibold text-white">职责贡献</h4>
             
             <!-- 贡献 Tab -->
@@ -429,15 +497,21 @@
                   <p class="text-sm text-[var(--c-text)]/90">利用大模型生成K线图技术分析报告，通过提示词工程和参数预填充的技巧，有效降低数据对比时的幻觉，以及提高最终输出的趋势判断合理性。</p>
                 </div>
                 <div class="tab-images grid grid-cols-1 md:grid-cols-3 gap-3 spacing-b">
-                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/ai-report-1.jpg', 'AI 分析报告示例 1')">
-                    <img class="w-full h-full object-cover" src="./assets/images/ai-report-1.jpg" alt="AI 分析报告示例 1" loading="lazy" />
-                  </div>
-                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/ai-report-2.jpg', 'AI 分析报告示例 2')">
-                    <img class="w-full h-full object-cover" src="./assets/images/ai-report-2.jpg" alt="AI 分析报告示例 2" loading="lazy" />
-                  </div>
-                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/ai-report-3.jpg', 'AI 分析报告示例 3')">
-                    <img class="w-full h-full object-cover" src="./assets/images/ai-report-3.jpg" alt="AI 分析报告示例 3" loading="lazy" />
-                  </div>
+                  <a class="aspect-video image-container" onclick="openLightbox('./assets/images/ai-report-1.jpg', 'AI 分析报告示例 1')">
+                    <img src="./assets/images/ai-report-1.jpg" alt="AI 分析报告示例 1" loading="lazy" />
+                    <div class="overlay"></div>
+                    <div class="label-container"><span>首页</span></div>
+                  </a>
+                  <a class="aspect-video image-container" onclick="openLightbox('./assets/images/ai-report-2.jpg', 'AI 分析报告示例 2')">
+                    <img src="./assets/images/ai-report-2.jpg" alt="AI 分析报告示例 2" loading="lazy" />
+                    <div class="overlay"></div>
+                    <div class="label-container"><span>工作台</span></div>
+                  </a>
+                  <a class="aspect-video image-container" onclick="openLightbox('./assets/images/ai-report-3.jpg', 'AI 分析报告示例 3')">
+                    <img src="./assets/images/ai-report-3.jpg" alt="AI 分析报告示例 3" loading="lazy" />
+                    <div class="overlay"></div>
+                    <div class="label-container"><span>报告详情页</span></div>
+                  </a>
                 </div>
               </div>
               <!-- 研究图表 -->
@@ -446,15 +520,21 @@
                   <p class="text-sm text-[var(--c-text)]/90">从300+的宏观经济数据和技术指标中，组合出几十张分析图表，力争用数据帮用户理解基本面，看清价格趋势。</p>
                 </div>
                 <div class="tab-images grid grid-cols-1 md:grid-cols-3 gap-3 spacing-b">
-                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/fundamentals-1.jpg', '基本面图表示例 1')">
-                    <img class="w-full h-full object-cover" src="./assets/images/fundamentals-1.jpg" alt="基本面图表示例 1" loading="lazy" />
-                  </div>
-                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/fundamentals-2.jpg', '基本面图表示例 2')">
-                    <img class="w-full h-full object-cover" src="./assets/images/fundamentals-2.jpg" alt="基本面图表示例 2" loading="lazy" />
-                  </div>
-                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/fundamentals-3.jpg', '基本面图表示例 3')">
-                    <img class="w-full h-full object-cover" src="./assets/images/fundamentals-3.jpg" alt="基本面图表示例 3" loading="lazy" />
-                  </div>
+                  <a class="aspect-video image-container" onclick="openLightbox('./assets/images/fundamentals-1.jpg', '基本面图表示例 1')">
+                    <img src="./assets/images/fundamentals-1.jpg" alt="基本面图表示例 1" loading="lazy" />
+                    <div class="overlay"></div>
+                    <div class="label-container"><span>图表底层页</span></div>
+                  </a>
+                  <a class="aspect-video image-container" onclick="openLightbox('./assets/images/fundamentals-2.jpg', '基本面图表示例 2')">
+                    <img src="./assets/images/fundamentals-2.jpg" alt="基本面图表示例 2" loading="lazy" />
+                    <div class="overlay"></div>
+                    <div class="label-container"><span>市场风向研究图表</span></div>
+                  </a>
+                  <a class="aspect-video image-container" onclick="openLightbox('./assets/images/fundamentals-3.jpg', '基本面图表示例 3')">
+                    <img src="./assets/images/fundamentals-3.jpg" alt="基本面图表示例 3" loading="lazy" />
+                    <div class="overlay"></div>
+                    <div class="label-container"><span>宏观分析研究图表</span></div>
+                  </a>
                 </div>
               </div>
               <!-- 技术算法构建 -->
@@ -463,15 +543,21 @@
                   <p class="text-sm text-[var(--c-text)]/90">技术形态识别（上升通道/头肩顶/楔形…），技术指标（新波那契回撤/成交量分布/技术打分…），分析功能（板块轮动）的核心算法构建。</p>
                 </div>
                 <div class="tab-images grid grid-cols-1 md:grid-cols-3 gap-3 spacing-b">
-                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/tech-pattern-1.jpg', '技术形态识别示例 1')">
-                    <img class="w-full h-full object-cover" src="./assets/images/tech-pattern-1.jpg" alt="技术形态识别示例 1" loading="lazy" />
-                  </div>
-                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/tech-indicator-2.jpg', '核心指标算法示例 2')">
-                    <img class="w-full h-full object-cover" src="./assets/images/tech-indicator-2.jpg" alt="核心指标算法示例 2" loading="lazy" />
-                  </div>
-                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/tech-indicator-3.jpg', '核心指标算法示例 3')">
-                    <img class="w-full h-full object-cover" src="./assets/images/tech-indicator-3.jpg" alt="核心指标算法示例 3" loading="lazy" />
-                  </div>
+                  <a class="aspect-video image-container" onclick="openLightbox('./assets/images/tech-pattern-1.jpg', '技术形态识别示例 1')">
+                    <img src="./assets/images/tech-pattern-1.jpg" alt="技术形态识别示例 1" loading="lazy" />
+                    <div class="overlay"></div>
+                    <div class="label-container"><span>技术形态识别</span></div>
+                  </a>
+                  <a class="aspect-video image-container" onclick="openLightbox('./assets/images/tech-indicator-2.jpg', '核心指标算法示例 2')">
+                    <img src="./assets/images/tech-indicator-2.jpg" alt="核心指标算法示例 2" loading="lazy" />
+                    <div class="overlay"></div>
+                    <div class="label-container"><span>成交量分布</span></div>
+                  </a>
+                  <a class="aspect-video image-container" onclick="openLightbox('./assets/images/tech-indicator-3.jpg', '核心指标算法示例 3')">
+                    <img src="./assets/images/tech-indicator-3.jpg" alt="核心指标算法示例 3" loading="lazy" />
+                    <div class="overlay"></div>
+                    <div class="label-container"><span>板块轮动</span></div>
+                  </a>
                 </div>
               </div>
               <!-- 内容设计 -->
@@ -480,15 +566,21 @@
                   <p class="text-sm text-[var(--c-text)]/90">美股视频内容的脚本设计，每篇内容 Futu 浏览量在50w上下。</p>
                 </div>
                 <div class="tab-images grid grid-cols-1 md:grid-cols-3 gap-3 spacing-b">
-                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/video-script-1.jpg', '视频脚本示例 1')">
-                    <img class="w-full h-full object-cover" src="./assets/images/video-script-1.jpg" alt="视频脚本示例 1" loading="lazy" />
-                  </div>
-                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/video-script-2.jpg', '视频脚本示例 2')">
-                    <img class="w-full h-full object-cover" src="./assets/images/video-script-2.jpg" alt="视频脚本示例 2" loading="lazy" />
-                  </div>
-                  <div class="aspect-video rounded-xl overflow-hidden border border-white/10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openLightbox('./assets/images/video-script-3.jpg', '视频脚本示例 3')">
-                    <img class="w-full h-full object-cover" src="./assets/images/video-script-3.jpg" alt="视频脚本示例 3" loading="lazy" />
-                  </div>
+                  <a class="aspect-video image-container" onclick="openLightbox('./assets/images/video-script-1.jpg', '视频脚本示例 1')">
+                    <img src="./assets/images/video-script-1.jpg" alt="视频脚本示例 1" loading="lazy" />
+                    <div class="overlay"></div>
+                    <div class="label-container"><span>视频内容底层页</span></div>
+                  </a>
+                  <a class="aspect-video image-container" onclick="openLightbox('./assets/images/video-script-2.jpg', '视频脚本示例 2')">
+                    <img src="./assets/images/video-script-2.jpg" alt="视频脚本示例 2" loading="lazy" />
+                    <div class="overlay"></div>
+                    <div class="label-container"><span>futu账户</span></div>
+                  </a>
+                  <a class="aspect-video image-container" onclick="openLightbox('./assets/images/video-script-3.jpg', '视频脚本示例 3')">
+                    <img src="./assets/images/video-script-3.jpg" alt="视频脚本示例 3" loading="lazy" />
+                    <div class="overlay"></div>
+                    <div class="label-container"><span>文章浏览量</span></div>
+                  </a>
                 </div>
               </div>
             </div>
@@ -524,26 +616,77 @@
       </article>
 
       <!-- 案例二：FOF Pro（PC 端） -->
-      <article class="col-span-12 grid grid-cols-12 gap-4 lg:gap-6 p-4 sm:p-6 rounded-2xl glass elev-1 border border-white/10">
-        <div class="col-span-12 flex items-center gap-2 text-xs uppercase tracking-wider text-white/70">
-          <span class="px-2 py-1 rounded bg-[var(--c-accent)]/20 text-[var(--c-accent)] font-semibold">PC 端</span>
-          <span class="opacity-60">FOF Pro</span>
+      <article class="col-span-12 grid grid-cols-12 gap-4 lg:gap-6 rounded-2xl glass elev-1 border border-white/10" style="padding:24px 16px;">
+        <!-- 标题行：与“米股研究”一致 -->
+        <div class="col-span-12 flex items-center gap-2">
+          <h3 class="text-xl sm:text-2xl font-semibold text-white">FOF Pro</h3>
+          <span class="px-2 py-1 rounded bg-[var(--c-accent)]/20 text-[var(--c-accent)] text-sm font-semibold">PC 端</span>
         </div>
-        <div class="col-span-12 lg:col-span-6 flex flex-col gap-3">
-          <h3 class="text-xl sm:text-2xl font-semibold">项目背景</h3>
-          <p class="text-[15px] leading-relaxed text-[var(--c-muted)]">沉淀大型买方基金分析平台的定制经验，打造标准化基金分析产品，以降低成本并扩大市场覆盖。</p>
 
-          <h4 class="font-semibold mt-2">职责与贡献</h4>
-          <ul class="list-disc pl-5 space-y-2 text-[15px]">
-            <li><b>TOWA 智能体平台：</b>基于 FastGPT 框架内置 Agent 搭建平台，上线「基金投顾」等系列 Agent，并对客户进行系统培训与落地辅导。</li>
-            <li><b>投研模板功能：</b>将数百种分析框架沉淀为可自动更新的数据图表模板，显著提升投研效率与一致性。</li>
-          </ul>
-        </div>
-        <div class="col-span-12 lg:col-span-6">
-          <div class="rounded-2xl overflow-hidden border border-white/10 elev-2">
-            <img src="./assets/images/fof-pro-screenshot.jpg" alt="FOF Pro 界面截图" class="w-full h-auto" loading="lazy" />
+        <!-- 左侧：项目背景 + Tabs -->
+        <div class="col-span-12 flex flex-col">
+          <div>
+            <h4 class="font-semibold">项目背景</h4>
+            <p class="text-[15px] leading-relaxed text-[var(--c-muted)] spacing-b">沉淀大型买方基金分析平台的定制经验，打造标准化基金分析产品，以降低成本并扩大市场覆盖。</p>
+          </div>
+
+          <div class="spacing-a tab-component">
+            <h4 class="font-semibold">职责与贡献</h4>
+            <div class="spacing-b flex flex-wrap gap-2" role="tablist" aria-label="FOF Pro 贡献标签">
+              <button class="tab-btn px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-sm active fof-tab-btn" data-tab="towa">TOWA 智能体平台</button>
+              <button class="tab-btn px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-sm fof-tab-btn" data-tab="template">投研模板功能</button>
+            </div>
+
+            <!-- Tab 内容区 -->
+            <div class="tab-content-area spacing-b">
+              <!-- TOWA 面板 -->
+              <div id="towa" class="fof-tab-pane active">
+                <p class="text-[15px] text-[var(--c-muted)]" style="margin-bottom: var(--spacing-b);">利用 Fast GPT 的开源框架，打造了 TOWA 智能体搭建平台，针对券商在做基金展业的各类场景，上线了“基金投顾”“ETF 投顾”“模拟客户”等一系列 Agent</p>
+                <div class="fof-grid">
+                <div class="ratio-1910-923 image-container" onclick="openLightbox('./assets/images/fof-towa-1.jpg','FOF Pro首页')">
+                  <img src="./assets/images/fof-towa-1.jpg" alt="FOF Pro首页" loading="lazy" />
+                  <div class="overlay"></div>
+                  <div class="image-label">FOF Pro首页</div>
+                </div>
+                <div class="ratio-1910-923 image-container" onclick="openLightbox('./assets/images/fof-towa-2.jpg','TOWA智能体平台')">
+                  <img src="./assets/images/fof-towa-2.jpg" alt="TOWA智能体平台" loading="lazy" />
+                  <div class="overlay"></div>
+                  <div class="image-label">TOWA智能体平台</div>
+                </div>
+                <div class="ratio-1910-923 image-container" onclick="openLightbox('./assets/images/fof-towa-3.jpg','工作流搭建')">
+                  <img src="./assets/images/fof-towa-3.jpg" alt="工作流搭建" loading="lazy" />
+                  <div class="overlay"></div>
+                  <div class="image-label">工作流搭建</div>
+                </div>
+                </div>
+              </div>
+
+              <!-- 投研模板 面板 -->
+              <div id="template" class="fof-tab-pane">
+                <p class="text-[15px] text-[var(--c-muted)]" style="margin-bottom: var(--spacing-b);">将针对基金公司/基金产品/基金经理/宏观经济的上百种分析框架，落地成自动更新的数据图表，提高基金投资研究的时效性、便利性和自由性</p>
+                <div class="fof-grid">
+                <div class="ratio-1910-923 image-container" onclick="openLightbox('./assets/images/fof-template-1.jpg','投研模板首页')">
+                  <img src="./assets/images/fof-template-1.jpg" alt="投研模板首页" loading="lazy" />
+                  <div class="overlay"></div>
+                  <div class="image-label">投研模板首页</div>
+                </div>
+                <div class="ratio-1910-923 image-container" onclick="openLightbox('./assets/images/fof-template-2.jpg','参数选择')">
+                  <img src="./assets/images/fof-template-2.jpg" alt="参数选择" loading="lazy" />
+                  <div class="overlay"></div>
+                  <div class="image-label">参数选择</div>
+                </div>
+                <div class="ratio-1910-923 image-container" onclick="openLightbox('./assets/images/fof-template-3.jpg','AI解读')">
+                  <img src="./assets/images/fof-template-3.jpg" alt="AI解读" loading="lazy" />
+                  <div class="overlay"></div>
+                  <div class="image-label">AI解读</div>
+                </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
+        
       </article>
     </section>
 
@@ -674,31 +817,41 @@
 
   <!-- 交互：Tab 切换 + 导航栏滚动动效 + 灯箱功能 -->
   <script>
-    // Tab 切换功能（优化版）
-    const tabs = document.querySelectorAll('.tab-btn');
-    const panes = document.querySelectorAll('.tab-pane');
-    tabs.forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        // 移除所有按钮的激活状态
-        tabs.forEach(b => {
-          b.classList.remove('active');
-          b.classList.remove('bg-white/10');
-          b.classList.add('bg-white/5');
+    // v3.0 组件化 Tab 切换（严格作用域隔离）
+    document.querySelectorAll('.tab-component').forEach((component) => {
+      const buttons = Array.from(component.querySelectorAll('.tab-btn, .fof-tab-btn'));
+      // 面板查询：优先在当前组件内部按 data-tab 匹配 id
+      const allPanelsInComponent = Array.from(component.querySelectorAll('.tab-pane, .fof-tab-pane'));
+      buttons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+          // 仅影响当前组件的按钮与面板
+          buttons.forEach(b => {
+            b.classList.remove('active');
+            b.classList.remove('bg-white/10');
+            b.classList.add('bg-white/5');
+          });
+          button.classList.add('active');
+          button.classList.remove('bg-white/5');
+
+          allPanelsInComponent.forEach(panel => {
+            panel.classList.remove('active');
+            panel.classList.add('hidden');
+          });
+
+          // 先尝试通过 data-tab 精确匹配 id
+          let target = component.querySelector('#' + CSS.escape(button.dataset.tab));
+          // 若找不到，再回退到“顺序一致”的假设
+          if (!target && allPanelsInComponent[index]) {
+            target = allPanelsInComponent[index];
+          }
+          if (target) {
+            target.classList.add('active');
+            target.classList.remove('hidden');
+          }
         });
-        
-        // 隐藏所有内容面板
-        panes.forEach(p => p.classList.add('hidden'));
-        
-        // 激活当前按钮
-        btn.classList.add('active');
-        btn.classList.remove('bg-white/5');
-        
-        // 显示对应内容
-        const id = btn.dataset.tab;
-        document.getElementById(id)?.classList.remove('hidden');
       });
     });
-    
+
     // 导航栏滚动显示/隐藏动效
     const navbar = document.getElementById('navbar');
     const mainTitle = document.getElementById('main-title');
