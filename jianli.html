@@ -281,12 +281,14 @@
       top: 1rem;
       left: 1rem;
       padding: 0.25rem 0.75rem;
-      background-color: rgba(255, 255, 255, 0.1);
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
       font-size: 15px; /* 与正文一致 */
       line-height: 1.6;
-      color: var(--c-muted);
+      z-index: 10; /* 保证位于 overlay 与图片之上 */
+      pointer-events: none; /* 不阻挡点击图片打开灯箱 */
+      background-color: rgba(10, 132, 255, 0.5); /* 与“联系我”一致的深蓝，50% 透明度 */
+      color: #FFFFFF; /* 白字高对比 */
+      border: none;
     }
     
     /* FOF tabs */
