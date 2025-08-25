@@ -22,9 +22,11 @@
       /* 垂直间距系统 */
       --spacing-b: 12px;     /* B类间距：内容间距 */
       --spacing-a: 24px;     /* A类间距：模块间距 (2B) */
+      --scale-factor: 1;     /* 移动端整体缩放系数，移动端会覆写为 < 1 */
     }
     html {scroll-behavior:smooth}
-    body{font-family:'Inter','Noto Sans SC',-apple-system,BlinkMacSystemFont,'PingFang SC',"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+    body{font-family:'Inter','Noto Sans SC',-apple-system,BlinkMacSystemFont,'PingFang SC',"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background-color:var(--c-bg);background-image:radial-gradient(1200px 600px at 10% 0%,rgba(10,132,255,0.10),transparent 60%),radial-gradient(900px 500px at 90% 20%,rgba(56,189,248,0.08),transparent 60%),radial-gradient(900px 520px at 50% 100%,rgba(99,102,241,0.09),transparent 60%),linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0));background-attachment:fixed,fixed,fixed,scroll;background-repeat:no-repeat;}
+    body{font-size: calc(16px * var(--scale-factor));}
     /* 玻璃质感与层级阴影 */
     .glass{background:linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02));backdrop-filter:saturate(140%) blur(8px);}
     .elev-1{box-shadow:0 10px 30px -8px rgba(0,0,0,.45)}
@@ -411,6 +413,7 @@
     }
     
     @media (max-width: 768px) {
+      :root { --scale-factor: 0.85; }
       .phone-mockup-container-precise {
         padding: 1rem;
         margin-top: var(--spacing-b); /* 移动端使用更小的间距 */
@@ -424,6 +427,28 @@
       .phone-screen {
         border-radius: 20px;
       }
+      /* 头部区域：头像堆叠到文字之上（已用栅格，移动端默认单列，此处强化间距） */
+      #hero .flex { gap: var(--spacing-b); }
+      
+      /* 米股研究：移动端堆叠，右侧手机在下 */
+      .miguyan-grid { display: block !important; }
+      .miguyan-left { margin-right: 0 !important; }
+      .miguyan-right { position: static !important; transform: none !important; width: 100% !important; margin-top: var(--spacing-a) !important; }
+      
+      /* 工作流Agent：两卡片纵向堆叠，卡片间距用A类 */
+      section#explore .grid.md\:grid-cols-2 { grid-template-columns: 1fr !important; }
+      section#explore .grid.md\:grid-cols-2 > * + * { margin-top: var(--spacing-a); }
+      
+      /* 公众号文章：两卡片纵向堆叠 */
+      section#explore .grid.md\:grid-cols-2.gap-4 > * + * { margin-top: var(--spacing-a); }
+      
+      /* 自媒体视频：单列 */
+      .media-video-grid { grid-template-columns: 1fr !important; }
+    }
+    
+    /* 平板端自媒体视频两列 */
+    @media (max-width: 1024px) {
+      .media-video-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -437,6 +462,11 @@
         <span class="text-sm sm:text-base font-semibold tracking-wide">潘彦吉｜产品经理</span>
       </div>
       <nav class="col-span-4 sm:col-span-6 flex justify-end items-center gap-4 text-sm">
+        <button id="hamburger" class="hamburger-menu md:hidden inline-flex flex-col items-center justify-center size-10 rounded-lg bg-white/5 border border-white/10">
+          <span class="block w-6 h-0.5 bg-white/80 mb-1"></span>
+          <span class="block w-6 h-0.5 bg-white/80 mb-1"></span>
+          <span class="block w-6 h-0.5 bg-white/80"></span>
+        </button>
         <a href="#cases" class="hidden md:inline-block opacity-80 hover:opacity-100 transition">产品案例</a>
         <a href="#explore" class="hidden md:inline-block opacity-80 hover:opacity-100 transition">探索与创作</a>
         <a href="#hero" class="inline-flex items-center gap-2 bg-[var(--c-accent)] text-white px-3 py-2 rounded-lg hover:brightness-110 active:brightness-95 transition shadow">联系我<i class="fa-solid fa-arrow-right text-xs"></i></a>
@@ -788,7 +818,7 @@
                target="_blank" rel="noopener noreferrer">抖音：潘师傅</a>
             <span class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition" style="pointer-events:none;cursor:default;">Youtubu：ZootopAI.Channel</span>
           </div>
-          <div class="grid md:grid-cols-3 gap-4" style="margin-top: var(--spacing-b);">
+          <div class="grid md:grid-cols-3 gap-4 media-video-grid" style="margin-top: var(--spacing-b);">
             <!-- 视频1：BV1XwYtzhE3k -->
             <div class="ratio-9-16 rounded-xl overflow-hidden bg-black/40 border border-white/10">
               <iframe src="//player.bilibili.com/player.html?bvid=BV1XwYtzhE3k&page=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width: 100%; height: 100%;"></iframe>
@@ -883,7 +913,13 @@
   <footer class="border-t border-white/10">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 text-sm flex flex-col sm:flex-row items-center justify-between gap-3">
       <p class="opacity-70">© 2025 Pan Yanji</p>
-      
+      <div id="mobile-menu" class="md:hidden fixed inset-0 bg-[var(--c-bg)]/95 backdrop-blur z-50 opacity-0 pointer-events-none transition-opacity">
+        <div class="p-6 space-y-4">
+          <a href="#cases" class="block text-lg" onclick="closeMobileMenu()">产品案例</a>
+          <a href="#explore" class="block text-lg" onclick="closeMobileMenu()">探索与创作</a>
+          <a href="#hero" class="block text-lg" onclick="closeMobileMenu()">回到顶部</a>
+        </div>
+      </div>
     </div>
   </footer>
 
@@ -964,6 +1000,27 @@
     
     observer.observe(mainTitle);
     
+    // 移动端汉堡菜单
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    function openMobileMenu(){
+      if (!mobileMenu) return;
+      mobileMenu.style.opacity = '1';
+      mobileMenu.style.pointerEvents = 'auto';
+    }
+    function closeMobileMenu(){
+      if (!mobileMenu) return;
+      mobileMenu.style.opacity = '0';
+      mobileMenu.style.pointerEvents = 'none';
+    }
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', () => {
+        const isOpen = mobileMenu.style.opacity === '1';
+        if (isOpen) closeMobileMenu(); else openMobileMenu();
+      });
+    }
+    window.closeMobileMenu = closeMobileMenu;
+
     // 灯箱功能
     function openLightbox(imageSrc, imageAlt) {
       const lightbox = document.getElementById('lightbox');
