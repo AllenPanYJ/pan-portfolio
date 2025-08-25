@@ -277,6 +277,17 @@
     /* FOF Pro 专用：宽高比与左上角胶囊标签 */
     .ratio-1910-923 { aspect-ratio: 1910 / 923; }
     .ratio-9-16 { aspect-ratio: 9 / 16; }
+    .ratio-16-9 { aspect-ratio: 16 / 9; }
+    /* 公众号文章卡片：图上文下结构的上半区背景图容器 */
+    .card-image-container {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background-size: cover;
+      background-position: center;
+      border-top-left-radius: 1rem; /* 与父容器一致的圆角过渡 */
+      border-top-right-radius: 1rem;
+    }
+    .ratio-16-9 { aspect-ratio: 16 / 9; }
     .image-label {
       position: absolute;
       top: 1rem;
@@ -309,6 +320,22 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 0.75rem; /* 与 FOF Pro 图片网格一致 */
       margin-top: 0; /* 间距由按钮的 margin-bottom 提供，避免叠加 */
+    }
+    /* Agent 图片网格：与 Vibe Coding 保持一致 */
+    .agent-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem; /* 等同 gap-3 */
+      margin-top: var(--spacing-b);
+    }
+    /* Agent 卡片图片网格：与 Vibe Coding 保持一致的间距与两列布局 */
+    .agent-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem; /* 等同 gap-3 */
+      margin-top: var(--spacing-b);
     }
     
     
@@ -773,22 +800,44 @@
       <!-- 自研 Agent -->
       <div class="grid grid-cols-12 gap-4 lg:gap-6 mb-6">
         <article class="col-span-12 p-4 sm:p-6 rounded-2xl bg-white/5 border border-white/10">
-          <h3 class="text-lg font-semibold">作品：自研 Agent</h3>
+          <h3 class="text-lg font-semibold">工作流Agent</h3>
           <div class="mt-3 grid md:grid-cols-2 gap-4">
             <div class="p-4 rounded-xl bg-black/30 border border-white/10">
-              <h4 class="font-semibold">文生图 Agent</h4>
-              <p class="text-sm text-[var(--c-muted)]">将灵感/文字快速生成海报与图片；支持风格模板与构图约束。</p>
+              <h4 class="font-semibold">绘图助手Agent</h4>
+              <p class="text-sm text-[var(--c-muted)]">将灵感/文字快速生成图片或者海报。</p>
               <div class="mt-3 flex gap-2">
-                <a class="px-3 py-2 rounded-lg bg-[var(--c-accent)]/20 text-[var(--c-accent)] border border-[var(--c-accent)]/30" href="#" target="_blank" rel="noreferrer">体验链接（待补充）</a>
-                <a class="px-3 py-2 rounded-lg bg-white/5 border border-white/10" href="#" target="_blank" rel="noreferrer">关键对话截图</a>
+                <a class="px-3 py-2 rounded-lg bg-[var(--c-accent)]/20 text-[var(--c-accent)] border border-[var(--c-accent)]/30" href="https://towa.fofinvesting.com/chat/share?shareId=y1gyb6chzfy0ao5akl0ly5pl" target="_blank" rel="noreferrer">体验链接</a>
+              </div>
+              <div class="agent-grid">
+                <div class="ratio-16-9 image-container" onclick="openLightbox('./assets/images/agent-drawing-1.jpg','绘图助手 - 工作流概览')">
+                  <img src="./assets/images/agent-drawing-1.jpg" alt="绘图助手 - 工作流概览" loading="lazy" />
+                  <div class="overlay"></div>
+                  <div class="image-label">工作流概览</div>
+                </div>
+                <div class="ratio-16-9 image-container" onclick="openLightbox('./assets/images/agent-drawing-2.jpg','绘图助手 - 成果展示')">
+                  <img src="./assets/images/agent-drawing-2.jpg" alt="绘图助手 - 成果展示" loading="lazy" />
+                  <div class="overlay"></div>
+                  <div class="image-label">成果展示</div>
+                </div>
               </div>
             </div>
             <div class="p-4 rounded-xl bg-black/30 border border-white/10">
-              <h4 class="font-semibold">备课助手 Agent</h4>
-              <p class="text-sm text-[var(--c-muted)]">面向教师的备课流程助理：大纲生成、习题抽取、节奏建议与讲义草稿。</p>
+              <h4 class="font-semibold">晨报Agent</h4>
+              <p class="text-sm text-[var(--c-muted)]">基金投顾的资讯助理。</p>
               <div class="mt-3 flex gap-2">
-                <a class="px-3 py-2 rounded-lg bg-[var(--c-accent)]/20 text-[var(--c-accent)] border border-[var(--c-accent)]/30" href="#" target="_blank" rel="noreferrer">体验链接（待补充）</a>
-                <a class="px-3 py-2 rounded-lg bg-white/5 border border-white/10" href="#" target="_blank" rel="noreferrer">关键对话截图</a>
+                <a class="px-3 py-2 rounded-lg bg-[var(--c-accent)]/20 text-[var(--c-accent)] border border-[var(--c-accent)]/30" href="https://towa.fofinvesting.com/chat/share?shareId=5d3o0gd0hovybfkien5mcj4i" target="_blank" rel="noreferrer">体验链接</a>
+              </div>
+              <div class="agent-grid">
+                <div class="ratio-16-9 image-container" onclick="openLightbox('./assets/images/agent-morning-1.jpg','晨报Agent - 工作流概览')">
+                  <img src="./assets/images/agent-morning-1.jpg" alt="晨报Agent - 工作流概览" loading="lazy" />
+                  <div class="overlay"></div>
+                  <div class="image-label">工作流概览</div>
+                </div>
+                <div class="ratio-16-9 image-container" onclick="openLightbox('./assets/images/agent-morning-2.jpg','晨报Agent - 成果展示')">
+                  <img src="./assets/images/agent-morning-2.jpg" alt="晨报Agent - 成果展示" loading="lazy" />
+                  <div class="overlay"></div>
+                  <div class="image-label">成果展示</div>
+                </div>
               </div>
             </div>
           </div>
@@ -798,20 +847,20 @@
       <!-- 公众号文章 -->
       <div class="grid grid-cols-12 gap-4 lg:gap-6">
         <article class="col-span-12 p-4 sm:p-6 rounded-2xl bg-white/5 border border-white/10">
-          <h3 class="text-lg font-semibold">作品：公众号文章（精选 2 篇）</h3>
+          <h3 class="text-lg font-semibold">公众号文章</h3>
           <div class="mt-4 grid md:grid-cols-2 gap-4">
-            <a class="group rounded-2xl overflow-hidden border border-white/10 bg-black/30 hover:bg-black/20 transition block" href="https://mp.weixin.qq.com/s/GAED5VWm2qj5_U5315tzkg" target="_blank" rel="noreferrer">
-              <div class="h-40 bg-gradient-to-br from-white/10 to-white/5"></div>
+            <!-- 左：剧本杀产业研究 -->
+            <a class="group rounded-2xl overflow-hidden border border-white/10 bg-black/30 transition block hover:bg-black/20" href="https://mp.weixin.qq.com/s/GAED5VWm2qj5_U5315tzkg" target="_blank" rel="noopener noreferrer">
+              <div class="card-image-container" style="background-image: url('./assets/images/article-jubensha.jpg');"></div>
               <div class="p-4">
-                <h4 class="font-semibold group-hover:text-[var(--c-accent)] transition">文章一：深度思考</h4>
-                <p class="text-sm text-[var(--c-muted)]">点击查看公众号原文</p>
+                <h4 class="font-semibold group-hover:text-[var(--c-accent)] transition">剧本杀产业研究：能否成为下一个聚会游戏风口</h4>
               </div>
             </a>
-            <a class="group rounded-2xl overflow-hidden border border-white/10 bg-black/30 hover:bg-black/20 transition block" href="https://mp.weixin.qq.com/s/w6MQoEYm-KUNpIdWCkYsSw" target="_blank" rel="noreferrer">
-              <div class="h-40 bg-gradient-to-br from-white/10 to-white/5"></div>
+            <!-- 右：邱栋容文章 -->
+            <a class="group rounded-2xl overflow-hidden border border-white/10 bg-black/30 transition block hover:bg-black/20" href="https://mp.weixin.qq.com/s/w6MQoEYm-KUNpIdWCkYsSw" target="_blank" rel="noopener noreferrer">
+              <div class="card-image-container" style="background-image: url('./assets/images/article-qiudongrong.jpg');"></div>
               <div class="p-4">
-                <h4 class="font-semibold group-hover:text-[var(--c-accent)] transition">文章二：方法论</h4>
-                <p class="text-sm text-[var(--c-muted)]">点击查看公众号原文</p>
+                <h4 class="font-semibold group-hover:text-[var(--c-accent)] transition">低估值策略的邱栋容，产品还能买吗</h4>
               </div>
             </a>
           </div>
