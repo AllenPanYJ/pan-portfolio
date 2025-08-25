@@ -444,6 +444,14 @@
       
       /* 自媒体视频：单列 */
       .media-video-grid { grid-template-columns: 1fr !important; }
+
+      /* 嵌套图片网格：移动端强制单列堆叠 */
+      .fof-grid { grid-template-columns: 1fr !important; gap: 0.75rem; }
+      .vibe-grid { grid-template-columns: 1fr !important; gap: 0.75rem; }
+      .agent-grid { grid-template-columns: 1fr !important; gap: 0.75rem; }
+
+      /* 悬浮导航“联系我”按钮：防止换行并增加左右内边距 */
+      #navbar nav a { white-space: nowrap; padding-left: 1.5rem; padding-right: 1.5rem; min-width: 6.5rem; }
     }
     
     /* 平板端自媒体视频两列 */
